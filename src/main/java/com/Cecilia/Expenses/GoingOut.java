@@ -1,23 +1,11 @@
 package com.Cecilia.Expenses;
 
-public class GoingOut {
-	public int id;
+public class GoingOut extends Expenses {
 	public String product;
 	public double price;
 	
-	public GoingOut(int id, String product, double price) {
-		super();
-		this.id = id;
-		this.product = product;
-		this.price = price;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
+	public GoingOut(String product, double price) {
+		super(product, price);
 	}
 
 	public String getProduct() {
@@ -38,14 +26,8 @@ public class GoingOut {
 
 	@Override
 	public String toString() {
-		return "GoingOut [id=" + id + ", product=" + product + ", price=" + price + "]";
+		return "GoingOut [product=" + product + ", price=" + price + "]";
 	}
 	
-	
-	
-	
-	
-	
-	
-
+		
 }

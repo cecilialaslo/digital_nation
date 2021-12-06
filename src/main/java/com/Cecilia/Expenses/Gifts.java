@@ -1,23 +1,11 @@
 package com.Cecilia.Expenses;
 
-public class Gifts {
-	public int id;
+public class Gifts extends Expenses {
 	public String product;
 	public double price;
 	
-	public Gifts(int id, String product, double price) {
-		super();
-		this.id = id;
-		this.product = product;
-		this.price = price;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
+	public Gifts(String product, double price) {
+		super(product, price);
 	}
 
 	public String getProduct() {
@@ -38,12 +26,8 @@ public class Gifts {
 
 	@Override
 	public String toString() {
-		return "Gift [id=" + id + ", product=" + product + ", price=" + price + "]";
+		return "Gifts [product=" + product + ", price=" + price + "]";
 	}
 	
-	
-	
-	
-	
-
+		
 }

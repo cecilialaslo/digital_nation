@@ -1,23 +1,14 @@
 package com.Cecilia.Expenses;
 
-public class Medical {
-	public int id;
+import org.springframework.stereotype.Component;
+
+
+public class Medical extends Expenses {
 	public String product;
 	public double price;
 	
-	public Medical(int id, String product, double price) {
-		super();
-		this.id = id;
-		this.product = product;
-		this.price = price;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
+	public Medical(String product, double price) {
+		super(product, price);
 	}
 
 	public String getProduct() {
@@ -38,11 +29,8 @@ public class Medical {
 
 	@Override
 	public String toString() {
-		return "Medical item [id=" + id + ", product=" + product + ", price=" + price + "]";
+		return "Medical [product=" + product + ", price=" + price + "]";
 	}
 	
-	
-	
-	
-	
+		
 }

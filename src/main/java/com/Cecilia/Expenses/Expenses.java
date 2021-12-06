@@ -1,11 +1,17 @@
 package com.Cecilia.Expenses;
 
-public class Food extends Expenses {
+import org.springframework.stereotype.Component;
+
+@Component
+public abstract class Expenses {
 	public String product;
 	public double price;
 	
-	public Food(String product, double price) {
-		super(product, price);
+
+	public Expenses(String product, double price) {
+		super();
+		this.product = product;
+		this.price = price;
 	}
 
 	public String getProduct() {
@@ -26,8 +32,16 @@ public class Food extends Expenses {
 
 	@Override
 	public String toString() {
-		return "Food [product=" + product + ", price=" + price + "]";
+		return "Expenses [product=" + product + ", price=" + price + "]";
 	}
+
 	
-		
+
+	
+
+	
+	
+	
+	
+	
 }
