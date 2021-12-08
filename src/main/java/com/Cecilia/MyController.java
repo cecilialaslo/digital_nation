@@ -28,7 +28,7 @@ public class MyController {
 		
 		total.add(m1);
 		total.add(f1);
-		total.add(g1);
+		total.add(g1); //acum ca merge add poti scoate asta 
 		
 		model.addAttribute("allExpenses", total);
 		
@@ -36,18 +36,27 @@ public class MyController {
 	
 	}
 	
+	@RequestMapping(value="/add", method = RequestMethod.GET) //metoda de tip get pentru a obtine view-ul
+	public String add(Model model) {		
+		/* Mi-e un pic neclar cum functioneaza model-ul. Pot adauga in el valori de tip String si double, 
+		 daca in metoda anterioara (/viewExpense) am adaugat o lista?) */
+		//da - poti adauga ce Object vrei. face el in spate managementul
+		// - dar nu poti adauga valori primitive - de aia am modificat price din double in Double 
+		return "addExpense";
+	}
+	
 	//Metoda de mai jos imi da in browser eroarea: (type=Method Not Allowed, status=405). Din nou, nu stiu cum s-o corectez 
-	@RequestMapping(value="/addExpense", method = RequestMethod.POST)
+	@RequestMapping(value="/addExpense", method = RequestMethod.POST) //metoda post este apelata din template si returneaza alt template
 	public String addExpense(@RequestParam(name="product", required = false) String product,
-							@RequestParam(name="price", required = false) double price,
+							@RequestParam(name="price", required = false) Double price,
 							Model model) {		
-		model.addAttribute("product", product);
-		model.addAttribute("price", price);
-		
+		//model.addAttribute("product", product);
+		//model.addAttribute("price", price);
+		total.add(new Gifts(product, price)); //am adaugat in lista ca sa si vedem. nu stiu daca ai nevoie sa adaugi in model
 		/* Mi-e un pic neclar cum functioneaza model-ul. Pot adauga in el valori de tip String si double, 
 		 daca in metoda anterioara (/viewExpense) am adaugat o lista?) */
 		
-		return "addExpense";
+		return "redirect:viewExpenses"; //pentru a afisa lista de expenses
 	}
 	
 

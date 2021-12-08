@@ -13,7 +13,10 @@
         </tr>
     </thead>
     <tbody>
-   		    <tr th:each="a : ${allExpenses}">
+    	<tr th:if="${allExpenses}">
+            <td colspan="2"> No Books Available </td>
+        </tr>
+   		<tr th:each="a : ${allExpenses}">
             <td><span th:text="${a.product}">Product</span></td>
             <td><span th:text="${a.price}">Price</span></td>
         </tr>

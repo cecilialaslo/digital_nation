@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public abstract class Expenses {
 	public String product;
-	public double price;
+	public Double price;
 	
 
 	public Expenses(String product, double price) {
@@ -22,11 +22,11 @@ public abstract class Expenses {
 		this.product = product;
 	}
 
-	public double getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 
