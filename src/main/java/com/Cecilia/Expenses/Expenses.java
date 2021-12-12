@@ -1,18 +1,40 @@
 package com.Cecilia.Expenses;
 
-import org.springframework.stereotype.Component;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@Component
-public abstract class Expenses {
-	public String product;
-	public Double price;
+@Entity
+public class Expenses {
 	
-
-	public Expenses(String product, double price) {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
+	private String product;
+	private Double price;
+	private enum expenseType {
+		FOOD,
+		GIFT,
+		GOINGOUT,
+		HOUSEITEM,
+		MEDICAL,
+		SELFIMPROVEMENT,
+		UTILITIES
+	}
+	
+	public Expenses(Long id, String product, Double price) {
 		super();
+		this.id = id;
 		this.product = product;
 		this.price = price;
 	}
+	
+	public Expenses() {
+	}
+	
+	
 
 	public String getProduct() {
 		return product;
@@ -29,11 +51,21 @@ public abstract class Expenses {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
+	
+		public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	@Override
 	public String toString() {
-		return "Expenses [product=" + product + ", price=" + price + "]";
+		return "Expenses [id=" + id + ", product=" + product + ", price=" + price + "]";
 	}
+
+	
 
 	
 

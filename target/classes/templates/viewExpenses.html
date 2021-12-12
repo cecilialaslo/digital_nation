@@ -8,17 +8,15 @@
   <table>
     <thead>
         <tr>
+        	<th> Item no. </th>
             <th> Product </th>
             <th> Price </th>
         </tr>
     </thead>
     <tbody>
-    	<tr th:if="${allExpenses}">
-            <td colspan="2"> No Books Available </td>
-        </tr>
-   		<tr th:each="a : ${allExpenses}">
-            <td><span th:text="${a.product}">Product</span></td>
-            <td><span th:text="${a.price}">Price</span></td>
+    	 	<tr th:each="e : ${allExpenses}">
+            <td><span th:text="${e.product}">Product</span></td>
+            <td><span th:text="${e.price}">Price</span></td>
         </tr>
     </tbody>
 </table>
