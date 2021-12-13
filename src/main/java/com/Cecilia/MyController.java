@@ -67,8 +67,19 @@ public class MyController {
 	//Daca nu ii fac Thymeleaf template, ce valoare de return trebuie sa pun aici? N-am stiut nici ce return sa dau nici metodei findById din ExpensesService.
 	@RequestMapping(value="/findById", method = RequestMethod.GET)
 	public String findById(@RequestParam(value="id") Long id) {
-		expensesService.findById(id);
-		return ???
+		Expenses e = expensesService.findById(id);
+		//model.addAttribute("produsCurent", e);
+		return "templateProdUnic"; 
+		/* Ar trebui folosit undeva intr-un template
+		Nu poti folosi altceva pentru ca nu are sens pentru browser (in web apps vedem doar pagini)
+		Logica ar fi:
+		- iti returneaza serviciul instanta de Expenses pe care o vrei
+		- o pui in model
+		- returnezi template-ul ce o foloseste
+		Ex: ai o lista de produse si identifici dupa ID unul anume cand dai click pe unul dintre ele
+		pentru a-ti deschide o pagina speciala pentru el (din lista de produse iti deschide view-ul cu spec, poze etc)
+		*/
+		
 	}
 	
 	
