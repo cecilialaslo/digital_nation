@@ -5,10 +5,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<form method="post" action="/addExpense">
-		<input type="number" name="item no"></input> 
-		<input type="text" name="product"></input>
-		<input type="number" name="price"></input>	
+	<form action="/addExpense" th:object="${allExpenses}" class="form"
+			method="post">		
+		<input type="text" name="product">Product
+		<input type="number" name="price">Price (RON)
+		<select th:field="*{type}">
+		<option th:each="e : ${expenseType}"
+					th:text="${expenseType.name}"
+					th:value="${expenseType}"></option>
+		</select>
 		<button type="submit">Add a new expense</button>
 	</form>
 </body>

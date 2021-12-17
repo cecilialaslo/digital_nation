@@ -4,20 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.Cecilia.Expenses.ExpenseType;
 import com.Cecilia.Expenses.Expenses;
 import com.Cecilia.Expenses.ExpensesRepo;
 import com.Cecilia.Expenses.ExpensesService;
 
-
-//Ca sa fie toate comentariile intr-o singura clasa, adaug aici si intrebare despre constructorul clasei Expenses:
-//In Expenses, am adaugat un field enum expenseType  -- dar nu cred ca pot (sau nu stiu) sa adaug enum in constructor.
-// Mentionez ca vreau sa folosesc enum-ul respectiv pentru a crea metoda addExpense din Controller un drop-down menu cu 7 tipuri de cheltuieli din care sa aleaga userul. 
 
 @Controller
 public class MyController {
@@ -33,62 +31,61 @@ public class MyController {
 		List<Expenses> listTable = expensesService.listTable();
 		model.addAttribute("allExpenses", listTable);
 		
-		return "viewExpenses"; //^asa se leaga baza de date de file-ul html, adaugand-o in Model?
+		return "viewExpenses"; 
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET) 
 	public String add(Model model) {
-		return "addExpense";
+		
+		//Aici e locul unde adaug in model valorile din enum-ul ExpenseType, ca sa le pot integra in form template?
+		model.addAttribute("expenseType", ExpenseType.values());
+		return "addExpense"; 
+		//poti verifica, te rog, daca am scris corect template-ul addExpense?
+		// am dubii despre th:object="${allExpenses}, de pe linia 8, si tot ce e in tag-ul Select. 
 	}
-	
-	//Nu functioneaza /addExpense -- nu imi adauga cheltuielile in baza de date. Trebuie readaugata lista (listTabel) in model si in interiorul metodei asteia? 
-	//In plus, cum pot face aici, in /addExpense, ca aplicatia sa-mi autogenereze un id, si sa nu-i mai cer userului sa-l introduca el?
-	@RequestMapping(value="/addExpense", method = RequestMethod.POST)
+		
+	@RequestMapping(value="/addExpense", method = {RequestMethod.POST, RequestMethod.GET})
 	public String addExpense(@RequestParam(name="product", required = true) String product,
 							@RequestParam(name="price", required = false) Double price,
-							@RequestParam(value = "id", defaultValue ="1") Long id, 
 							Model model)  {
 		
-		expensesService.addinTable(new Expenses(id, product, price));
+		expensesService.addinTable(new Expenses(product, price));
 		
-		return "redirect:viewExpenses";				
+		
+		return "redirect:getExpenses";				
 		
 	}
 	
-	//Am creat metoda addBread doar ca sa verific din consola H2 daca imi adauga entry-ul asta in tabel, dar nu pare sa-l adauage.
+	
 	@RequestMapping(value="/addbread", method = RequestMethod.GET)
 	public String addBread() {
-		Expenses a = new Expenses (1l, "bread", 5.00);
+		Expenses a = new Expenses ("bread", 5.00);
 		expensesService.addinTable(a);
-		return "redirect:viewExpenses";	
+		return "redirect:getExpenses";	
 	}
 	
 	
-	//Daca nu ii fac Thymeleaf template, ce valoare de return trebuie sa pun aici? N-am stiut nici ce return sa dau nici metodei findById din ExpensesService.
-	@RequestMapping(value="/findById", method = RequestMethod.GET)
-	public String findById(@RequestParam(value="id") Long id) {
+	@RequestMapping(value="/find", method = RequestMethod.GET)
+	public String findById(@RequestParam(value="id") Long id,
+							Model model) {
 		Expenses e = expensesService.findById(id);
-		//model.addAttribute("produsCurent", e);
-		return "templateProdUnic"; 
-		/* Ar trebui folosit undeva intr-un template
-		Nu poti folosi altceva pentru ca nu are sens pentru browser (in web apps vedem doar pagini)
-		Logica ar fi:
-		- iti returneaza serviciul instanta de Expenses pe care o vrei
-		- o pui in model
-		- returnezi template-ul ce o foloseste
-		Ex: ai o lista de produse si identifici dupa ID unul anume cand dai click pe unul dintre ele
-		pentru a-ti deschide o pagina speciala pentru el (din lista de produse iti deschide view-ul cu spec, poze etc)
-		*/
-		
+		model.addAttribute("selectedProduct", e);
+		return "selectedProduct"; 
+			
 	}
 	
-	
-	@RequestMapping(value="deleteById", method = RequestMethod.DELETE)
-	public String deleteById(@RequestParam(value="id") Long id) {
-		expensesService.deletefromTable(id);
+	@RequestMapping(value="/delete/{id}", method = {RequestMethod.DELETE, RequestMethod.GET})
+	public String delete(@PathVariable Long id) {
+		expensesService.deleteFromTable(id);
 		
-		return "redirect:viewExpenses";	
+		return  "redirect:/getExpenses";	
 	}
+
+	
+	
+	
+
+	
 	
 }
 

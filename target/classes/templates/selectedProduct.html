@@ -1,21 +1,20 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head> 
-    <title>All Expenses</title> 
+    <title>Selected product</title> 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
   <table>
     <thead>
         <tr>
-        	<th> Item no. </th>
-            <th> Product </th>
-            <th> Price (RON) </th>
+        	 <th> Product </th>
+            <th> Price </th>
         </tr>
     </thead>
     <tbody>
-    	 	<tr th:each="e : ${allExpenses}">
-    	 	<td><span th:text="${e.id}">Id</span>
+    	 	<tr th:each="e : ${selectedProduct}">
+    	 	
             <td><span th:text="${e.product}">Product</span></td>
             <td><span th:text="${e.price}">Price</span></td>
         </tr>

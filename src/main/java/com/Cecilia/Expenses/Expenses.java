@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 public class Expenses {
@@ -14,19 +15,11 @@ public class Expenses {
 	
 	private String product;
 	private Double price;
-	private enum expenseType {
-		FOOD,
-		GIFT,
-		GOINGOUT,
-		HOUSEITEM,
-		MEDICAL,
-		SELFIMPROVEMENT,
-		UTILITIES
-	}
 	
-	public Expenses(Long id, String product, Double price) {
+	private ExpenseType type;
+	
+	public Expenses(String product, Double price) {
 		super();
-		this.id = id;
 		this.product = product;
 		this.price = price;
 	}
@@ -51,6 +44,7 @@ public class Expenses {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
+
 	
 		public Long getId() {
 		return id;
@@ -64,6 +58,8 @@ public class Expenses {
 	public String toString() {
 		return "Expenses [id=" + id + ", product=" + product + ", price=" + price + "]";
 	}
+	
+	
 
 	
 
