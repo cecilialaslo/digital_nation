@@ -8,15 +8,19 @@
   <table>
     <thead>
         <tr>
+        	<th>Id</th>
         	 <th> Product </th>
             <th> Price </th>
+            <th>Type</th>
+            
         </tr>
     </thead>
     <tbody>
     	 	<tr th:each="e : ${selectedProduct}">
-    	 	
+    	 	<td><span th:text="${e.id}">id</span></td>
             <td><span th:text="${e.product}">Product</span></td>
-            <td><span th:text="${e.price}">Price</span></td>
+            <td><span th:text="${e.price}">Price(RON)</span></td>
+            <td><span th:text="${e.expenseType}">Type</span></td>
         </tr>
     </tbody>
 </table>

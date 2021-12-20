@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Expenses Total</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+  <table>
+    <thead>
+        <tr>
+        	<th>Sum(RON)</th>            
+        </tr>
+    </thead>
+    <tbody>
+    	 	<tr th:each="e : ${sumTotal}">
+    	 	<td><span th:text="${e}"></span></td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

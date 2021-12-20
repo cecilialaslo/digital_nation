@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Find expense</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<form action="/deleteExpense" th:object="${allExpenses}" class="form-control input-sm w-auto inline m-r"
+			method="delete">
+		<label for="id" class="form-label"> Delete expense no. </label>		
+		<input type="text" th:name="id"/>
+	<button type="submit"> Delete </button>
+	</form>
+</body>
+</html>

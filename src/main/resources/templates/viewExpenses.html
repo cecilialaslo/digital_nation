@@ -11,13 +11,15 @@
         	<th> Item no. </th>
             <th> Product </th>
             <th> Price (RON) </th>
+            <th>Type</th>
         </tr>
     </thead>
     <tbody>
     	 	<tr th:each="e : ${allExpenses}">
     	 	<td><span th:text="${e.id}">Id</span>
             <td><span th:text="${e.product}">Product</span></td>
-            <td><span th:text="${e.price}">Price</span></td>
+            <td><span th:text="${e.price}">Price(RON)</span></td>
+            <td><span th:text="${e.expenseType}">Type</span></td>
         </tr>
     </tbody>
 </table>

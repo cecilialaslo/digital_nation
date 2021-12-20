@@ -38,4 +38,12 @@ public class ExpensesService {
 			return findById.get();
 		}
 		}
+	
+	public List<Expenses> getByType(String expenseType) {
+		List<Expenses> byType = expensesRepo.getByExpenseType(expenseType);
+		
+		return byType;
+	}
+	
+
  }

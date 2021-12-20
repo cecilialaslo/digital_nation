@@ -25,4 +25,16 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/main/resources/static/img/buget.jpg</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Desktop/java_course/1.Spring%20Boot%20snips/buget.jpg</locationURI>
+		</link>
+		<link>
+			<name>src/main/resources/static/img/buget.png</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Desktop/java_course/1.Spring%20Boot%20snips/buget.png</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

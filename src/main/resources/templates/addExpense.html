@@ -6,15 +6,22 @@
 </head>
 <body>
 	<form action="/addExpense" th:object="${allExpenses}" class="form"
-			method="post">		
-		<input type="text" name="product">Product
-		<input type="number" name="price">Price (RON)
-		<select th:field="*{type}">
-		<option th:each="e : ${expenseType}"
-					th:text="${expenseType.name}"
-					th:value="${expenseType}"></option>
-		</select>
-		<button type="submit">Add a new expense</button>
+			method="post">
+		<label for="Product" class="form-label">Product</label>		
+		<input type="text" name="product">
+		<label for="Price" class="form-label">Price(RON)</label>
+		<input type="number" name="price">
+		<label for="Type" class="form-label">Type</label>
+		<select id="expenseType" name="expenseType">
+	<option value="food">Food</option>
+	<option value="gift">Gift</option>
+	<option value="going_out">Going Out</option>
+	<option value="house_item">House Item</option>
+	<option value="medical">Medical</option>
+	<option value="self_improvement">Self Improvement</option>
+	<option value="utilities">Utilities</option>
+    		</select>
+	<button type="submit">Add a new expense</button>
 	</form>
 </body>
 </html>
